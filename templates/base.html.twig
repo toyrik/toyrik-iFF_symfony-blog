@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% include 'includes/head.html.twig' %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="container">
+            <header><a href="/"><img id="logo" src="img/logo.jpg" alt="Widget News" /></a></header>
+            {% include 'includes/nav.html.twig' %}
+            
+            {% block body %}{% endblock %}
+            
+            {% block javascripts %}{% endblock %}
+            {% include 'includes/footer.html.twig' %}
+        </div>
     </body>
 </html>
