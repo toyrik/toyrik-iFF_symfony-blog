@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th>PublicationDate</th>
-                <td>{{ article.publicationDate ? article.publicationDate|date('Y-m-d') : '' }}</td>
+                <td>{{ article.publicationDate ? article.publicationDate|format_date(locale='ru') : '' }}</td>
             </tr>
             <tr>
                 <th>Title</th>
