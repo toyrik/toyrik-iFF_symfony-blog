@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+          <h1> {{ pageTitle }} </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          <p class="lead"> Добро пожаловать в iFF-blog! </p>
+        </div>
+    </div>
+    {% for article in articles %}
+        <div class="col-12 article article{{ article.id }}">
+            <a href="{{ path('article_show', {'id': article.id}) }}">
+                <h3 class="article-head">
+                    {{ article.title }}
+                </h3>
+            </a>
+            <span class="pubDate">
+                {{ article.publicationDate ? article.publicationDate|format_date('full', locale='ru') : '' }}
+            </span>
+            <p class="summary">
+                {{ article.summary }}
+            </p>
+            <ul class="ajax-load">
+                <li>
+                    <a href="#" class="ajaxArticleBodyByPost" data-contentId="{{ article.id }}">
+                        Показать продолжение (POST)
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="ajaxArticleBodyByGet" data-contentId="{{ article.id }}">
+                        Показать продолжение (GET)
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="ajaxNewPost" data-article-id="{{ article.id }}">
+                        (POST) -- NEW
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="ajaxNewGet" data-article-id="{{ article.id }}">
+                        (GET)  -- NEW
+                    </a>
+                </li>
+            </ul>
+            <a href="{{ path('article_show', {'id': article.id}) }}" class="showContent" data-contentId="{{ article.id }}">
+                Показать полностью
+            </a>
+            <div class="end-card"></div>
+        </div>
+    {% endfor %}
+{% endblock %}
